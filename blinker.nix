@@ -2,6 +2,7 @@
 , typing-extensions
 , setuptools
 , lib
+, fetchPypi
 }: buildPythonPackage rec {
         pname = "blinker";
         version = "1.6.1";

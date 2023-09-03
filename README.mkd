@@ -12,7 +12,7 @@ installation via the configuration software.
 
 ## Usage
 
-More likely you will want to integrate this into a larger flake of some sort (such as the one
+Most likely you will want to integrate this into a larger flake of some sort (such as the one
 building your system that is going to be connected to your Velbus installation):
 
 ```nix
@@ -36,7 +36,12 @@ From there `velbus.packages` will contain `python-velbustcp` – the TCP bridge.
 This flake also provides NixOS module to set up the `velbustcp` service quickly. Here's an example:
 
 ```
-imports = [ nix-velbus.nixosModules.default ];
+imports = [ velbus.nixosModules.default ];
+nixpkgs.overlays = [ velbus.overlay ];
+nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "python-velbustcp"
+];
+
 services.velbustcp.enable = true; # Enable the service;
 ```
 
