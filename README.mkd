@@ -1,0 +1,48 @@
+<div align="center">
+    <h1>A nix flake for all(?) things Velbus</h1>
+    <strong>TCP gateways, configuration software and other useful utilities.</strong>
+</div>
+
+The usual way to connect to your Velbus installation is to use one of the gateway modules, such as
+`VMBRSUSB` and interact with it over a serial interface it provides. This, however, imposes a fair
+number of limitations on how you can interact with the rest of the Velbus installation. In
+particular, this requires that there's only a single program using the interface at a time. If
+you’re using a home automation tool, this already means you cannot configure your Velbus
+installation via the configuration software.
+
+## Usage
+
+More likely you will want to integrate this into a larger flake of some sort (such as the one
+building your system that is going to be connected to your Velbus installation):
+
+```nix
+inputs = {
+    # ...;
+    velbus.url = "github:nagisa/nix-velbus";
+    velbus.inputs = {
+        # In case you alrady depend on `nixpkgs` in your flake, consider having `openhab`
+        # “follow” it:
+        nixpkgs.follows = "nixpkgs";
+        # Similarly, for flake-utils:
+        flake-utils.follows = "flake-utils";
+    };
+};
+```
+
+From there `velbus.packages` will contain `python-velbustcp` – the TCP bridge.
+
+### NixOS
+
+This flake also provides NixOS module to set up the `velbustcp` service quickly. Here's an example:
+
+```
+imports = [ nix-velbus.nixosModules.default ];
+services.velbustcp.enable = true; # Enable the service;
+```
+
+Additionally The following options are provided:
+
+* `services.velbustcp.package`: override the `python-velbustcp` package to use;
+* `services.velbustcp.settings`: configure the `python-velbustcp` service. See the [upstream
+template](https://github.com/velbus/python-velbustcp/blob/master/settings.json.template) for the
+knobs you can turn.

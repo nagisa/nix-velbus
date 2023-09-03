@@ -6,10 +6,10 @@
     };
     description = "Run a Velbus TCP gateway on your NixOS system";
 
-    outputs = { self, flake-utils, ... }@inputs: flake-utils.lib.eachDefaultSystem (system:
+    outputs = { self, flake-utils, ... }@inputs: (flake-utils.lib.eachDefaultSystem (system:
     let pkgs = import inputs.nixpkgs { inherit system; };
     in {
-        packages = with pkgs.python3Packages; {
+        packages = with pkgs.python3Packages; rec {
             blinker = buildPythonPackage rec {
                 pname = "blinker";
                 version = "1.6.1";
@@ -36,12 +36,18 @@
             program = "${self.packages.${system}.default}/bin/velbustcp";
         };
 
+    })) // {
         nixosModules.default = { config, lib, pkgs, ... }:
         with lib;
         let cfg = config.services.velbustcp;
         in {
             options.services.velbustcp = {
                 enable = mkEnableOption "Enable the Velbus TCP Gateway service.";
+                package = mkOption {
+                    description = "The `python-velbustcp` package to use";
+                    type = types.package;
+                    default = self.packages.${pkgs.system}.default;
+                };
                 settings = mkOption {
                     description = ''
                         python-velbustcp configuration as a nix attribute set.
@@ -50,25 +56,23 @@
                         https://github.com/velbus/python-velbustcp/blob/master/settings.json.template
                     '';
                     default = { };
-                    type = submodule {
-                        freeformType = (pkgs.format.json {}).type;
+                    type = types.submodule {
+                        freeformType = (pkgs.formats.json {}).type;
                     };
                 };
 
             };
             config = mkIf cfg.enable {
-
-
                 systemd.services.velbustcp = {
                     description = "Velbus TCP Gateway";
                     wants = [ "network.target" ];
                     wantedBy = [ "multi-user.target" ];
                     serviceConfig = {
                         Restart = lib.mkDefault "on-failure";
-                        ExecStart = "${self.packages.${system}.default}/bin/velbustcp --settings=${pkgs.writeText "velbustcp-settings.json" (builtins.toJSON cfg.settings)}";
+                        ExecStart = "${cfg.package}/bin/velbustcp --settings=${pkgs.writeText "velbustcp-settings.json" (builtins.toJSON cfg.settings)}";
                     };
                 };
             };
         };
-    });
+    };
 }
