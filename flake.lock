@@ -1,0 +1,77 @@
+{
+  "nodes": {
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1692799911,
+        "narHash": "sha256-3eihraek4qL744EvQXsK1Ha6C3CR7nnT8X2qWap4RNk=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "f9e7cf818399d17d347f847525c5a5a8032e4e44",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1693730102,
+        "narHash": "sha256-X7zPshp49a721asV2PDDumyYAO3GE2nwMGPA3diQhAw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "0b39810fe654b880c6ec0a75f8ba45b84a7c7758",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "python-velbustcp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1686917668,
+        "narHash": "sha256-47CWnkGaDPhZa5SE53d6gFLRNaCIsPbHy3SDjZhEoOA=",
+        "owner": "velbus",
+        "repo": "python-velbustcp",
+        "rev": "74593a0c040478f5ed3c434e5aea81ae71c9ee35",
+        "type": "github"
+      },
+      "original": {
+        "owner": "velbus",
+        "repo": "python-velbustcp",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs",
+        "python-velbustcp": "python-velbustcp"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
