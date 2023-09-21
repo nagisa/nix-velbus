@@ -43,7 +43,9 @@
             config = mkIf cfg.enable {
                 systemd.services.velbustcp = {
                     description = "Velbus TCP Gateway";
-                    wants = [ "network.target" ];
+                    # It is possible to specify specific IP addresses you want to bind to, and
+                    # binding may fail somewhat silently (the service will continue running.)
+                    wants = [ "network-online.target" ];
                     wantedBy = [ "multi-user.target" ];
                     serviceConfig = {
                         Restart = "on-failure";
