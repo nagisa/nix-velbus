@@ -14,6 +14,6 @@
     meta = with lib; {
         homepage = "https://github.com/velbus/python-velbustcp";
         description = "Python application that bridges a Velbus installation with TCP";
-        license = licenses.unfree; # The license is not specified => defaults to unfree.
+        license = licenses.mit;
     };
 }

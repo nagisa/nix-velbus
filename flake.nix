@@ -45,7 +45,7 @@
                     description = "Velbus TCP Gateway";
                     # It is possible to specify specific IP addresses you want to bind to, and
                     # binding may fail somewhat silently (the service will continue running.)
-                    wants = [ "network-online.target" ];
+                    wants = [ "network.target" ];
                     wantedBy = [ "multi-user.target" ];
                     serviceConfig = {
                         Restart = "on-failure";

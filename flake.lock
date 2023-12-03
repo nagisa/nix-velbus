@@ -36,11 +36,11 @@
     "python-velbustcp": {
       "flake": false,
       "locked": {
-        "lastModified": 1686917668,
-        "narHash": "sha256-47CWnkGaDPhZa5SE53d6gFLRNaCIsPbHy3SDjZhEoOA=",
+        "lastModified": 1701264779,
+        "narHash": "sha256-dlAAlUcsPu2aMhuPn6sAf5+DkaE4AGI7xRiBnn5Gt8c=",
         "owner": "velbus",
         "repo": "python-velbustcp",
-        "rev": "74593a0c040478f5ed3c434e5aea81ae71c9ee35",
+        "rev": "44e3c8f44b05b8a904f6b4ea72f4936eb3bb5ee6",
         "type": "github"
       },
       "original": {
