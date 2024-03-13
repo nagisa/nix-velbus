@@ -5,11 +5,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1692799911,
-        "narHash": "sha256-3eihraek4qL744EvQXsK1Ha6C3CR7nnT8X2qWap4RNk=",
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "f9e7cf818399d17d347f847525c5a5a8032e4e44",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
         "type": "github"
       },
       "original": {
@@ -20,11 +20,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1693730102,
-        "narHash": "sha256-X7zPshp49a721asV2PDDumyYAO3GE2nwMGPA3diQhAw=",
+        "lastModified": 1710369630,
+        "narHash": "sha256-6PFCmZAqnc08mC2NXKLfcWm9YWEQWqn6L9npde2OF2k=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0b39810fe654b880c6ec0a75f8ba45b84a7c7758",
+        "rev": "38a9f7dd36189ec69f83f7869f3dae42f637cb8f",
         "type": "github"
       },
       "original": {
@@ -36,11 +36,11 @@
     "python-velbustcp": {
       "flake": false,
       "locked": {
-        "lastModified": 1701264779,
-        "narHash": "sha256-dlAAlUcsPu2aMhuPn6sAf5+DkaE4AGI7xRiBnn5Gt8c=",
+        "lastModified": 1710334112,
+        "narHash": "sha256-YTRtPE5MeO/TLpwHWra2qTBNMwW64t3RmT2TAMijoOM=",
         "owner": "velbus",
         "repo": "python-velbustcp",
-        "rev": "44e3c8f44b05b8a904f6b4ea72f4936eb3bb5ee6",
+        "rev": "8046ed7f2ff33f57a291d03eba02e102b56ed5e7",
         "type": "github"
       },
       "original": {
