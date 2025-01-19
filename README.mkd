@@ -37,10 +37,6 @@ This flake also provides NixOS module to set up the `velbustcp` service quickly.
 
 ```
 imports = [ velbus.nixosModules.default ];
-nixpkgs.overlays = [ velbus.overlay ];
-nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "python-velbustcp"
-];
 
 services.velbustcp.enable = true; # Enable the service;
 ```

@@ -6,7 +6,7 @@
         python-velbustcp = { url = "github:velbus/python-velbustcp"; flake = false; };
     };
 
-    outputs = { self, flake-utils, ... }@inputs: {
+    outputs = { self, flake-utils, ... }@inputs: rec {
         overlay = final: prev: rec {
             velbustcp-blinker = final.python3Packages.callPackage ./blinker.nix {};
             velbustcp = final.python3Packages.callPackage ./python-velbustcp.nix {
@@ -41,6 +41,7 @@
             };
 
             config = mkIf cfg.enable {
+                nixpkgs.overlays = [ overlay ];
                 systemd.services.velbustcp = {
                     description = "Velbus TCP Gateway";
                     # It is possible to specify specific IP addresses you want to bind to, and
