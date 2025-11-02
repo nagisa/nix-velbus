@@ -2,6 +2,7 @@
 , velbustcp-blinker
 , setuptools
 , pyserial
+, pyserial-asyncio-fast
 , lib
 , src
 }: buildPythonApplication rec {
@@ -10,7 +11,7 @@
     version = src.shortRev;
     format = "pyproject";
     buildInputs = [ setuptools ];
-    propagatedBuildInputs = [ pyserial velbustcp-blinker ];
+    propagatedBuildInputs = [ pyserial pyserial-asyncio-fast velbustcp-blinker ];
     meta = with lib; {
         homepage = "https://github.com/velbus/python-velbustcp";
         description = "Python application that bridges a Velbus installation with TCP";

@@ -9,8 +9,10 @@
     outputs = { self, flake-utils, ... }@inputs: rec {
         overlay = final: prev: rec {
             velbustcp-blinker = final.python3Packages.callPackage ./blinker.nix {};
+            velbustcp-pyserial-asyncio-fast = final.python3Packages.callPackage ./pyserial-asyncio-fast.nix {};
             velbustcp = final.python3Packages.callPackage ./python-velbustcp.nix {
                 src = inputs.python-velbustcp;
+                pyserial-asyncio-fast = velbustcp-pyserial-asyncio-fast;
             };
         };
 
