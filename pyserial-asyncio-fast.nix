@@ -19,6 +19,7 @@ buildPythonPackage rec {
         rev = version;
         hash = "sha256-ZnXuwHvYq/BrEW6YV6T0sQ03u2rpwNBnpF+dXAmvxKQ=";
     };
+    patches = [ ./pyserial-python3.14-compat.patch ];
     build-system = [ setuptools ];
     dependencies = [ pyserial ];
     pythonImportsCheck = [ "serial_asyncio_fast" ];
