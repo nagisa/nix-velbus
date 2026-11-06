@@ -52,7 +52,30 @@
                     wantedBy = [ "multi-user.target" ];
                     serviceConfig = {
                         Restart = "on-failure";
-                        ExecStart = "${pkgs.velbustcp}/bin/velbustcp --settings=${pkgs.writeText "velbustcp-settings.json" (builtins.toJSON cfg.settings)}";
+                        ExecStart = "${cfg.package}/bin/velbustcp --settings=${pkgs.writeText "velbustcp-settings.json" (builtins.toJSON cfg.settings)}";
+                        DynamicUser = true;
+                        # To access ttyACM/ttyUSB.
+                        SupplementaryGroups = [ "dialout" ];
+                        DevicePolicy = "closed";
+                        DeviceAllow = [ "char-ttyACM rw" "char-ttyUSB rw" ];
+                        CapabilityBoundingSet = "";
+                        NoNewPrivileges = true;
+                        ProtectKernelTunables = true;
+                        ProtectKernelModules = true;
+                        ProtectKernelLogs = true;
+                        ProtectControlGroups = true;
+                        ProtectClock = true;
+                        ProtectHostname = true;
+                        ProtectProc = "invisible";
+                        ProcSubset = "pid";
+                        PrivateUsers = true;
+                        LockPersonality = true;
+                        RestrictRealtime = true;
+                        RestrictNamespaces = true;
+                        UMask = "0077";
+                        RestrictAddressFamilies = [ "AF_UNIX" "AF_INET" "AF_INET6" ];
+                        SystemCallArchitectures = "native";
+                        SystemCallFilter = [ "@system-service" "~@privileged @resources" ];
                     };
                 };
             };
